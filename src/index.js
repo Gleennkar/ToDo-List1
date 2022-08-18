@@ -1,17 +1,15 @@
 import './style.css';
 
-let todolist = [
- 
-];
+// let todolist = [];
 
 let storedList = JSON.parse(localStorage.getItem('tasks'));
 if (storedList === null) {
     storedList = [];
   }
   
-
-
+  
 const add = (description) => {
+    let todolist = [...storedList];
     todolist.push({
         index: todolist.length + 1,
         description: description,
@@ -28,9 +26,10 @@ input.addEventListener('keyup', (e) => {
         let storedList = JSON.parse(localStorage.getItem('tasks'));
         getTodoList(storedList);
         input.value = ' '
-
+        window.location.reload();
+   
     }
-    window.location.reload();
+  
 }
 
 )
@@ -51,11 +50,19 @@ class Tasks {
 
   remove(id) {
     this.toDoList = this.toDoList.filter((list) => list.id !== Number(id));
-  }
+    // function remove(element)
+    {
+        const index = element.parentNode.id;
+        toDoList.splice(index, 1);
+        return toDoList;
+      }
+      
+}
 }
 // eslint-disable-next-line no-unused-vars
 const list1 = new Tasks();
 const todoDiv = document.querySelector('.list1');
+
 const getTodoList = (array) => {
   array.forEach((list) => {
     const li = document.createElement('li');
@@ -76,9 +83,17 @@ const getTodoList = (array) => {
     const dots = document.createElement('i');
     dots.classList.add('fa');
     dots.classList.add('fa-ellipsis-v');
+    dots.classList.add('delete')
     li.appendChild(dots);
     todoDiv.appendChild(li);
+    
+    
   });
 };
+
+const deleteToDo = document.getElementsByClassName('delete')
+deleteToDo.addEventListener('onClick', () => {
+  alert('test')
+})
 getTodoList(storedList);
 
