@@ -1,22 +1,40 @@
 import './style.css';
 
-const todolist = [
-  {
-    index: 1,
-    description: 'Wash the dishes',
-    completed: false,
-  },
-  {
-    index: 2,
-    description: 'complete my daily activities',
-    completed: false,
-  },
-  {
-    index: 3,
-    description: 'complete To Do list project',
-    completed: false,
-  },
+let todolist = [
+ 
 ];
+
+let storedList = JSON.parse(localStorage.getItem('tasks'));
+if (storedList === null) {
+    storedList = [];
+  }
+  
+
+
+const add = (description) => {
+    todolist.push({
+        index: todolist.length + 1,
+        description: description,
+        completed: false
+      });
+      localStorage.setItem('tasks', JSON.stringify(todolist));
+
+}
+
+const input = document.querySelector('.todo-input');
+input.addEventListener('keyup', (e) => {
+    if(e.keyCode === 13) {
+        add(input.value) 
+        let storedList = JSON.parse(localStorage.getItem('tasks'));
+        getTodoList(storedList);
+        input.value = ' '
+
+    }
+    window.location.reload();
+}
+
+)
+
 
 class Tasks {
   constructor() {
@@ -38,8 +56,8 @@ class Tasks {
 // eslint-disable-next-line no-unused-vars
 const list1 = new Tasks();
 const todoDiv = document.querySelector('.list1');
-const getTodoList = () => {
-  todolist.forEach((list) => {
+const getTodoList = (array) => {
+  array.forEach((list) => {
     const li = document.createElement('li');
     li.classList.add('list');
     const liDiv = document.createElement('div');
@@ -62,4 +80,4 @@ const getTodoList = () => {
     todoDiv.appendChild(li);
   });
 };
-getTodoList();
+getTodoList(storedList);
