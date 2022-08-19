@@ -1,40 +1,34 @@
 import './style.css';
 
-let todolist = [
- 
+const todolist = [
+
 ];
 
 let storedList = JSON.parse(localStorage.getItem('tasks'));
 if (storedList === null) {
-    storedList = [];
-  }
-  
-
+  storedList = [];
+}
 
 const add = (description) => {
-    todolist.push({
-        index: todolist.length + 1,
-        description: description,
-        completed: false
-      });
-      localStorage.setItem('tasks', JSON.stringify(todolist));
-
-}
+  todolist.push({
+    index: todolist.length + 1,
+    description,
+    completed: false,
+  });
+  localStorage.setItem('tasks', JSON.stringify(todolist));
+};
 
 const input = document.querySelector('.todo-input');
 input.addEventListener('keyup', (e) => {
-    if(e.keyCode === 13) {
-        add(input.value) 
-        let storedList = JSON.parse(localStorage.getItem('tasks'));
-        getTodoList(storedList);
-        input.value = ' '
-
-    }
-    window.location.reload();
-}
-
-)
-
+  if (e.keyCode === 13) {
+    add(input.value);
+    const storedList = JSON.parse(localStorage.getItem('tasks'));
+    // eslint-disable-next-line no-unused-vars
+    getTodoList(storedList);
+    input.value = ' ';
+  }
+  window.location.reload();
+});
 
 class Tasks {
   constructor() {
@@ -81,4 +75,3 @@ const getTodoList = (array) => {
   });
 };
 getTodoList(storedList);
-
