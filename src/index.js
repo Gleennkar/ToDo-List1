@@ -1,33 +1,38 @@
+/* eslint-disable import/no-cycle */
+
 import './style.css';
 import { add, removeTodo, storedList } from './addRemoveToDo.js';
 // let todolist = [];
 
-class Tasks {
-  constructor() {
-    this.toDoList = [];
-  }
+// class Tasks {
+//   constructor() {
+//     this.toDoList = [];
+//   }
 
-  add(description, completed) {
-    this.toDoList = this.toDoList.concat({
-      index: Date.now(),
-      description,
-      completed,
-    });
-  }
+//   add(description, completed) {
+//     this.toDoList = this.toDoList.concat({
+//       index: Date.now(),
+//       description,
+//       completed,
+//     });
+//   }
 
-  remove(id) {
-    this.toDoList = this.toDoList.filter((list) => list.id !== Number(id));
-    // function remove(element)
-    {
-      const index = element.parentNode.id;
-      toDoList.splice(index, 1);
-      return toDoList;
-    }
-  }
-}
-// eslint-disable-next-line no-unused-vars
-const list1 = new Tasks();
+//   remove(id) {
+//     this.toDoList = this.toDoList.filter((list) => list.id !== Number(id));
+//     // function remove(element)
+//   }
+// }
+
+// const list1 = new Tasks();
 const todoDiv = document.querySelector('.list1');
+
+const saveone = (desc, id) => {
+  const myTodo = storedList.find((todo) => todo.index.toString() === id);
+  myTodo.description = desc;
+  const todoPosition = storedList.indexOf(myTodo);
+  storedList[todoPosition] = myTodo;
+  localStorage.setItem('tasks', JSON.stringify(storedList));
+};
 
 const getTodoList = (array) => {
   array.forEach((list) => {
@@ -74,14 +79,6 @@ const getTodoList = (array) => {
   });
 };
 
-const saveone = (desc, id) => {
-  const myTodo = storedList.find((todo) => todo.index.toString() == id);
-  myTodo.description = desc;
-  const todoPosition = storedList.indexOf(myTodo);
-  storedList[todoPosition] = myTodo;
-  localStorage.setItem('tasks', JSON.stringify(storedList));
-};
-
 const input = document.querySelector('.todo-input');
 input.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
@@ -94,3 +91,5 @@ input.addEventListener('keyup', (e) => {
 });
 
 getTodoList(storedList);
+
+export default getTodoList;

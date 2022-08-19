@@ -1,3 +1,8 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/no-mutable-exports */
+
+import getTodoList from './index.js';
+
 export let storedList = JSON.parse(localStorage.getItem('tasks'));
 if (storedList === null) {
   storedList = [];
