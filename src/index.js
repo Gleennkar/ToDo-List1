@@ -2,6 +2,8 @@
 
 import './style.css';
 import { add, removeTodo, storedList } from './addRemoveToDo.js';
+import { updateStatus } from './update.js';
+
 // let todolist = [];
 
 // class Tasks {
@@ -46,6 +48,11 @@ const getTodoList = (array) => {
     checkbox.type = 'checkbox';
     checkbox.checked = list.completed;
     liDiv.appendChild(checkbox);
+
+    const cbox = document.querySelectorAll('.checkbox');
+    cbox.forEach((chbox) => {
+      chbox.addEventListener('change', updateStatus);
+    });
 
     const desc = document.createElement('input');
     desc.classList.add('desc');
