@@ -47,12 +47,13 @@ const getTodoList = (array) => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = list.completed;
+    checkbox.addEventListener('click', (e) => updateStatus(e));
     liDiv.appendChild(checkbox);
 
-    const cbox = document.querySelectorAll('.checkbox');
-    cbox.forEach((chbox) => {
-      chbox.addEventListener('change', updateStatus);
-    });
+    //  const cbox = document.querySelectorAll('.checkbox');
+    //  cbox.forEach((chbox) => {
+    //    cbox.addEventListener('change', (e) => updateStatus(e));
+    // });
 
     const desc = document.createElement('input');
     desc.classList.add('desc');
@@ -90,11 +91,20 @@ const input = document.querySelector('.todo-input');
 input.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
     add(input.value);
+    // eslint-disable-next-line no-unused-vars
     const storedList = JSON.parse(localStorage.getItem('tasks'));
-    getTodoList(storedList);
-    input.value = ' ';
+    // getTodoList(storedList);
+    // input.value = ' ';
     window.location.reload();
   }
+});
+
+const clearCompleted = document.getElementById('clear-completed');
+clearCompleted.addEventListener('click', () => {
+  const todos = JSON.parse(localStorage.getItem('tasks'));
+  const newList = todos.filter((todo) => todo.completed === false);
+  localStorage.setItem('tasks', JSON.stringify(newList));
+  window.location.reload();
 });
 
 getTodoList(storedList);
