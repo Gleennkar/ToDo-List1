@@ -68,3 +68,12 @@ body {
 .li-div {
   display: flex;
 }
+
+.hide {
+  display: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
