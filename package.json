@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "dev": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
