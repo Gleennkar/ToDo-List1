@@ -14,7 +14,7 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://https://gleennkar.github.io/ToDo-List1/)
+[Live Demo Link](https://gleennkar.github.io/ToDo-List1/dist/)
 
 
 ## Getting Started
