@@ -25,6 +25,7 @@
 - Then you can pull the work from github to ur local machine using the git pull command.
 - run npm install to install all dependencies used in the project
 - run npm start to start the application on the browser.
+- npm run build
 
 
 
